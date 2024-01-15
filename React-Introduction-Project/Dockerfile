@@ -6,7 +6,7 @@ RUN mkdir /apps
 WORKDIR /apps
 
 COPY ./package.json ./
-RUN npm Install
+RUN npm install
 COPY ./ ./
 
 CMD ["npm" "run" "dev"]
