@@ -1,5 +1,5 @@
 #Install base image for node-18.17.0
-FROM node:alpine3.18
+FROM node:18-alpine
 
 RUN mkdir /apps
 
@@ -9,4 +9,4 @@ COPY ./package.json ./
 RUN npm install
 COPY ./ ./
 
-CMD ["npm" "run" "dev"]
+CMD ["npm" "start"]
