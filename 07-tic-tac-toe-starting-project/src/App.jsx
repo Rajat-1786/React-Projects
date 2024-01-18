@@ -12,6 +12,7 @@ function App() {
        </ol>
         <GameBoard></GameBoard>
       </div>
+      
     </>
     
   )
