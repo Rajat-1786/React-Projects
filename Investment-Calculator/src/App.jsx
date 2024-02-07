@@ -14,15 +14,17 @@ function onChangeHandler(fieldname,newVal){
   setVal((newUserInput)=>{
     return{
     ...newUserInput,
-    [fieldname]: newVal
+    [fieldname]: +newVal
     }
   });
 }
 
+const isValid = userInput.duration>=1;
+
   return (
     <>
       <UserInput userInput={userInput} handleChange={onChangeHandler}></UserInput>
-      <Result userInput={userInput}></Result>
+      { isValid?<Result userInput={userInput}></Result>:<p>Please Enter the correct duration</p>}
     </>
   )
 }

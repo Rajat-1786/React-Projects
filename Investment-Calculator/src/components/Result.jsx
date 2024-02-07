@@ -1,7 +1,8 @@
-import {calculateInvestmentResults} from "../util/investment";
+import {calculateInvestmentResults,formatter} from "../util/investment";
 
 export default function Result({userInput}){
     const annualData = calculateInvestmentResults(userInput)
+    const initialInvestment = annualData[0].valueEndOfYear-annualData[0].interest-annualData[0].annualInvestment;
 
     console.log(annualData);
     return(
@@ -16,15 +17,17 @@ export default function Result({userInput}){
                 </tr>     
             </thead>
             <tbody>
-                {annualData.map((Data, index) => (
-                    <tr key={index}>
+                {annualData.map((Data, index) => {
+                    const totalInterest = Data.valueEndOfYear-Data.annualInvestment*Data.year-initialInvestment; 
+                    const TotalAmountInvested = Data.valueEndOfYear-Data.interest;
+                    return (<tr key={Data.year}>
                         <td>{Data.year}</td>
-                        <td>{Data.annualInvestment}</td>
-                        <td>{Data.interest}</td>
-                        <td>{Data.interest}</td>
-                        <td>{Data.valueEndOfYear}</td>
-                    </tr>
-                ))}
+                        <td>{formatter.format(Data.valueEndOfYear)}</td>
+                        <td>{formatter.format(Data.interest)}</td>
+                        <td>{formatter.format(totalInterest)}</td>
+                        <td>{formatter.format(TotalAmountInvested)}</td>
+                    </tr>)
+                })}
             </tbody> 
         </table>
     )
