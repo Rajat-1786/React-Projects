@@ -15,8 +15,7 @@ export default function TimeChallenge({title,targetTime}){
     }
 
     function handleReset(){
-        setInterval(targetTime * 1000);
-        
+        setInterval(setTimeRemaining(targetTime * 1000));
     }
 
     function handleStart(){
